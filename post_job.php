@@ -22,7 +22,18 @@ include 'search.php';
 <!-- ? SEARCH -->
 
 
+
+
 <section hidden class="two-cards-bg" id="post-job">
+<!-- // ! if NO USER - sign in/up  -->
+<? if(!$_SESSION['user']): ?>
+	<div class="no-user">
+		<div>
+		Please <a href="enter.php"> SING IN </a> or <a href="register_front.php"> SIGN UP </a> to Post Jobs
+		</div>
+	</div>
+	<? endif; ?>
+<!-- // ! if USER OK - POST JOB  -->
 	<div class="two-cards-flex">
 		<!-- ! card__post-job -->
 		<div class="card card__post-job">
