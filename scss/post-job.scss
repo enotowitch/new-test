@@ -1,0 +1,230 @@
+$brand-color: #6fda44;
+$gray-color: #969696;
+
+// ! post-job
+.two-cards-bg {
+	position: relative;
+	z-index: 1;
+	padding-bottom: 16px;
+	&::before {
+		content: "";
+		background: url("../img/bg-img1920-grey.png") 0 0 / cover no-repeat;
+		height: 100%;
+		width: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		box-shadow: 0 5px 5px rgba(0, 0, 0, 0.3);
+	}
+}
+.two-cards-flex {
+	position: relative;
+	// border: 2px solid red;
+	&__arrow {
+		@media (max-width: 828px) {
+			transform: rotate(90deg);
+			margin: 15px 0;
+			order: 3;
+		}
+	}
+	//
+	&__cross {
+		position: absolute;
+		right: -45px;
+		display: inline-block;
+		align-self: flex-start;
+		@media (max-width: 828px) {
+			position: relative;
+			right: 0;
+			align-self: center;
+			margin-bottom: 15px;
+			order: 1;
+		}
+	}
+	//
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	max-width: 740px;
+	margin: 0 auto;
+	@media (max-width: 922px) {
+		//todo here
+	}
+	@media (max-width: 828px) {
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+// ! card__post-job
+.card {
+	&__post-job {
+		position: relative;
+		color: $gray-color;
+		font-style: italic;
+		*:not(.card__tag):not(.card__tags) {
+			text-decoration: underline;
+		}
+		@media (max-width: 828px) {
+			order: 2;
+		}
+	}
+	&__input-logo {
+		width: 0.1px;
+		height: 0.1px;
+		opacity: 0;
+		overflow: hidden;
+		position: absolute;
+		z-index: -1;
+	}
+	&__input-logo-label {
+		border: 2px solid $gray-color;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		span,
+		span::before {
+			position: absolute;
+			display: block;
+			width: 20px;
+			height: 2px;
+			background-color: $gray-color;
+			border-radius: 8px;
+			transition: 0.2s;
+		}
+		span::before {
+			content: "";
+			transform: rotate(90deg);
+		}
+		span:hover,
+		span:hover:before {
+			height: 3px;
+		}
+	}
+	&__post-job-title {
+		color: $gray-color;
+		width: 200px;
+		height: 37px;
+		overflow: hidden;
+		resize: none;
+		z-index: 10;
+	}
+	&__post-job-company-name {
+		width: 200px;
+		height: 30px;
+		overflow: hidden;
+		resize: none;
+		z-index: 10;
+	}
+	&__post-job-options {
+	}
+	.card-option {
+		cursor: pointer;
+		&__post-job-salary {
+			position: absolute;
+			top: 85px;
+			z-index: 12;
+		}
+		&__post-job-exp {
+			position: absolute;
+			top: 85px;
+			z-index: 12;
+		}
+		// todo
+		&__post-job-location {
+			font-style: normal;
+			position: absolute;
+			top: 85px;
+			z-index: 199;
+		}
+		&__post-job-example {
+			opacity: 0;
+			overflow: hidden;
+			position: absolute;
+			z-index: -1;
+			width: 0.1px;
+			height: 0.1px;
+		}
+		&__post-job-example-label {
+			border: 1px solid #aaa;
+			border-radius: 5px;
+			font-size: 13px;
+			color: #444444;
+			width: 100px;
+			height: 25px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			cursor: pointer;
+			position: absolute;
+			top: 112px;
+			right: 10px;
+			// z-index: 999999;
+		}
+	}
+	&__post-job-icons {
+		// display: flex;
+		// justify-content: flex-end;
+		background-color: transparent;
+		position: relative;
+		z-index: 12;
+	}
+}
+// ! post-job-EXAMPLE
+.card {
+	&__post-job-example {
+		position: relative;
+		font-style: normal;
+		* {
+			text-decoration: none;
+		}
+		@media (max-width: 828px) {
+			order: 4;
+		}
+	}
+	&__post-job-example-title {
+	}
+	&__post-job-example-company-name {
+	}
+	&__post-job-example-options {
+		color: $gray-color;
+		font-weight: 700;
+	}
+	.card-option {
+		// todo
+		&__post-job-example-location {
+			font-style: normal;
+			font-weight: 700;
+		}
+	}
+	&__post-job-example-icons {
+		display: flex;
+		justify-content: flex-end;
+		&_employer {
+			justify-content: space-between;
+		}
+	}
+}
+// ! HIDE post job submit / reset inputs
+.post-job-submit,
+.post-job-reset {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+.post-job-submit-label {
+	position: absolute;
+	top: 170px;
+	left: 264px;
+}
+.post-job-reset-label {
+	transform: scale(0.7);
+	position: absolute;
+	top: 4px;
+	left: 260px;
+}
+
+// ! delete

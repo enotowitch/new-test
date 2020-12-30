@@ -1,0 +1,159 @@
+// ! header
+
+$brand-color: #6fda44;
+$gray-color: #969696;
+
+.header__block {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-between;
+	color: $gray-color;
+	font-size: 14px;
+}
+
+.header {
+	&__icon {
+		fill: $gray-color;
+		&_active path {
+			fill: $brand-color;
+		}
+		&_messages {
+			width: 30px;
+		}
+		&_sign-in {
+			width: 30px;
+		}
+		&_profile {
+			width: 30px;
+			height: 30px;
+		}
+		&_search {
+			width: 20px;
+			height: 30px;
+		}
+		&_post-job {
+			width: 25px;
+			height: 30px;
+		}
+	}
+	height: 48px;
+	margin-bottom: 16px;
+	padding: 0px 8px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.1);
+	&__burger,
+	&__burger-menu {
+		display: none;
+	}
+	@media (max-width: 828px) {
+		a:not(.header__logo):not(.header__burger) {
+			display: none;
+		}
+		&__burger {
+			display: block;
+			position: relative;
+			width: 35px;
+			height: 35px;
+			background-color: #fff;
+			border: 2px solid #000;
+			border-radius: 50%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			span::before {
+				display: block;
+				content: "";
+				transform: translateY(4px);
+			}
+			span::after {
+				display: block;
+				content: "";
+				transform: translateY(-4px);
+			}
+			span,
+			span::before,
+			span::after {
+				transition: 0.2s;
+				position: absolute;
+				width: 20px;
+				height: 2px;
+				background-color: #000;
+			}
+		}
+		&__burger-active {
+			span::before {
+				transform: rotate(45deg);
+			}
+			span::after {
+				transform: rotate(-45deg);
+			}
+			span {
+				height: 0;
+			}
+		}
+		&__burger-menu {
+			text-align: center;
+			top: -100%;
+			right: 0;
+			z-index: 99;
+			position: absolute;
+			background-color: #fff;
+			box-shadow: 1px 4px 5px rgba(0, 0, 0, 0.1);
+			width: 250px;
+			@media (max-width: 617px) {
+				width: 160px;
+			}
+		}
+		&__burger-menu-active {
+			display: block;
+			top: 48px;
+			a {
+				display: flex !important;
+				justify-content: space-between;
+				align-items: center;
+				padding: 20px;
+				img {
+					margin-right: 20px;
+				}
+			}
+		}
+	}
+
+	&__img-3-4 {
+		position: relative;
+		right: 41px;
+		display: flex;
+		justify-content: space-between;
+		flex: 0 1 144px;
+		a {
+			display: flex;
+			align-items: center;
+		}
+	}
+	&__img-5 {
+		position: relative;
+		right: 100px;
+		display: flex;
+		align-items: center;
+	}
+}
+
+.nav-block-item-active {
+	transition: all 0.5s;
+	color: $brand-color;
+	path {
+		transition: all 0.5s;
+		fill: $brand-color;
+	}
+}
+
+// ! delete
+// ! nav-block
+.nav-block {
+	&_active {
+		background-color: rgb(240, 240, 240);
+	}
+}

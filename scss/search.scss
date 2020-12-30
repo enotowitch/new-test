@@ -1,0 +1,128 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap");
+
+$brand-color: #6fda44;
+$gray-color: #969696;
+$gray-light-color: #dedede;
+
+.search {
+	user-select: none;
+	margin-bottom: 16px;
+	&__body {
+		position: relative;
+		max-width: 615px;
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__topics {
+		cursor: pointer;
+		font-family: Montserrat;
+		font-size: 20px;
+		color: $gray-color;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		span {
+			display: block;
+			padding: 4px 0 8px 0;
+		}
+	}
+	&__topic {
+		&_active {
+			color: $brand-color;
+			position: relative;
+			bottom: 2px;
+			left: 2px;
+		}
+		position: relative;
+		padding-left: 15px;
+		&:hover {
+			color: $brand-color;
+		}
+		// border: 2px solid red;
+		&:last-child {
+			margin-right: 15px;
+		}
+		&::after {
+			content: "|";
+			position: absolute;
+			right: -10px;
+			top: 2px;
+		}
+		&:active::before,
+		&:hover::before {
+			content: "";
+			position: absolute;
+			right: -8px;
+			bottom: 8px;
+			width: 100%;
+			height: 1.5px;
+			background-color: $brand-color;
+		}
+	}
+
+	&__tags {
+		font-family: "Source Serif Pro";
+		font-size: 16px;
+		color: #000;
+		padding: 0 15px;
+		&_design {
+		}
+		&_dev {
+		}
+	}
+	&__input-icon {
+		margin: 6px 8px 0 15px;
+		path {
+			fill: $gray-color;
+		}
+	}
+	&__cross{
+		margin-bottom: 8px;
+	}
+}
+// ! .search__tags .card__tag
+.search__tags .card__tag {
+	&_active {
+		background-color: $gray-light-color;
+	}
+	cursor: pointer;
+}
+// ! .search__input
+.search__input {
+	margin-top: 8px;
+	display: flex;
+	justify-content: center;
+}
+// ! # search__input
+#search__input {
+	outline: 1px solid $gray-color;
+	font-family: "Source Serif Pro";
+	padding: 0 8px;
+	font-size: 16px;
+	display: block;
+	height: 28px;
+	flex: 0 1 320px;
+	margin-right: 15px;
+	&:focus {
+		box-shadow: inset 0 0 5px $brand-color;
+		// outline: 2px solid $gray-color;
+	}
+}
+//
+//
+//
+//
+//
+// todo delete?
+.two-cards-bg {
+}
+.card {
+	&__tag {
+		&:hover {
+			background-color: $gray-light-color;
+		}
+	}
+}

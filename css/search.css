@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+Pro&display=swap");
+.search {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  margin-bottom: 16px;
+}
+
+.search__body {
+  position: relative;
+  max-width: 615px;
+  margin: 0 auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.search__topics {
+  cursor: pointer;
+  font-family: Montserrat;
+  font-size: 20px;
+  color: #969696;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.search__topics span {
+  display: block;
+  padding: 4px 0 8px 0;
+}
+
+.search__topic {
+  position: relative;
+  padding-left: 15px;
+}
+
+.search__topic_active {
+  color: #6fda44;
+  position: relative;
+  bottom: 2px;
+  left: 2px;
+}
+
+.search__topic:hover {
+  color: #6fda44;
+}
+
+.search__topic:last-child {
+  margin-right: 15px;
+}
+
+.search__topic::after {
+  content: "|";
+  position: absolute;
+  right: -10px;
+  top: 2px;
+}
+
+.search__topic:active::before, .search__topic:hover::before {
+  content: "";
+  position: absolute;
+  right: -8px;
+  bottom: 8px;
+  width: 100%;
+  height: 1.5px;
+  background-color: #6fda44;
+}
+
+.search__tags {
+  font-family: "Source Serif Pro";
+  font-size: 16px;
+  color: #000;
+  padding: 0 15px;
+}
+
+.search__input-icon {
+  margin: 6px 8px 0 15px;
+}
+
+.search__input-icon path {
+  fill: #969696;
+}
+
+.search__cross {
+  margin-bottom: 8px;
+}
+
+.search__tags .card__tag {
+  cursor: pointer;
+}
+
+.search__tags .card__tag_active {
+  background-color: #dedede;
+}
+
+.search__input {
+  margin-top: 8px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+#search__input {
+  outline: 1px solid #969696;
+  font-family: "Source Serif Pro";
+  padding: 0 8px;
+  font-size: 16px;
+  display: block;
+  height: 28px;
+  -webkit-box-flex: 0;
+      -ms-flex: 0 1 320px;
+          flex: 0 1 320px;
+  margin-right: 15px;
+}
+
+#search__input:focus {
+  -webkit-box-shadow: inset 0 0 5px #6fda44;
+          box-shadow: inset 0 0 5px #6fda44;
+}
+
+.card__tag:hover {
+  background-color: #dedede;
+}

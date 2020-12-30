@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+// !!! PROFILE
+
+$brand-color: #6fda44;
+$gray-color: #969696;
+
+
+
+// ! delete
+
+.profile-employer-card {
+	height: 203px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	text-decoration: none !important;
+	&__label {
+		display: block;
+		width: 100%;
+		height: 40px;
+		border-bottom: 2px solid $gray-color;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		text-decoration: none !important;
+		&::after {
+			content: "";
+			width: 20px;
+			height: 20px;
+			background-color: $gray-color;
+			border-radius: 50%;
+			margin-right: 12px;
+		}
+		&_active {
+			border-bottom: 2px solid $brand-color;
+			font-weight: 700 !important;
+		}
+	}
+	&__job-number {
+		text-decoration: none !important;
+		white-space: nowrap;
+		padding-left: 4px;
+		font-size: 16px;
+		text-overflow: ellipsis;
+		max-width: 100px;
+	}
+	&__radio {
+		width: 0.1px;
+		height: 0.1px;
+		opacity: 0;
+		overflow: hidden;
+		position: absolute;
+		z-index: -1;
+	}
+}
+
+//

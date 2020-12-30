@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+.profile-employer-card {
+  height: 203px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  text-decoration: none !important;
+}
+
+.profile-employer-card__label {
+  display: block;
+  width: 100%;
+  height: 40px;
+  border-bottom: 2px solid #969696;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  text-decoration: none !important;
+}
+
+.profile-employer-card__label::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: #969696;
+  border-radius: 50%;
+  margin-right: 12px;
+}
+
+.profile-employer-card__label_active {
+  border-bottom: 2px solid #6fda44;
+  font-weight: 700 !important;
+}
+
+.profile-employer-card__job-number {
+  text-decoration: none !important;
+  white-space: nowrap;
+  padding-left: 4px;
+  font-size: 16px;
+  -o-text-overflow: ellipsis;
+     text-overflow: ellipsis;
+  max-width: 100px;
+}
+
+.profile-employer-card__radio {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
+}
