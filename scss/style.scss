@@ -306,6 +306,12 @@ a:active {
 		color: $brand-color;
 	}
 }
+.destroy-btn{
+	position: absolute;
+	z-index: 99;
+	right: 6px;
+	top: 40px;
+}
 // // ! OLD big slider
 // .hidden-pop {
 // 	padding: 0 15px;

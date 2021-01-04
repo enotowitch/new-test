@@ -27,19 +27,22 @@ jQuery(document).ready(function () {
 	$(".post-job-workload-select").chosen({ 'width': '95px', 'max_selected_options': '1', });
 
 
-	// ! AJAX DELETE 
+	// ! AJAX DESTROY 
 
-	$(document).on('click', '.delete-btn', function (e) {
+	$(document).on('click', '.destroy-btn', function (e) {
 		e.preventDefault();
+
+		confirm("SURE YOU WANT TO DELETE YOUR POST?");
+
 
 		var this_card = $(e.target).closest('.card');
 
 		var hidden_id_delete = this_card.find('input[name="hidden_id_delete"]').val();
-var user_id = this_card.find('#user_id_index').val();
+		var user_id = this_card.find('#user_id_index').val();
 		
 
 		$.ajax({
-			url: 'delete.php',
+			url: 'destroy.php',
 			type: 'POST',
 			data: { hidden_id_delete:hidden_id_delete,user_id:user_id },
 			success: function (data) {
@@ -57,7 +60,27 @@ var user_id = this_card.find('#user_id_index').val();
 
 		$(document).on('click', '.post-job-reset-label', function () {
 			document.location.reload();
-		})
+		});
+
+		// ! HIDE/DELETE posts for ONE user
+		$(document).on('click', '.delete-btn', function(e){
+			e.preventDefault();
+
+			var delete_id = $(e.target).closest('.card').find('.card__icons').find('input[name="hidden_id_delete"]').val();
+			var user_id_index	= $(e.target).closest('.card').find('.card__icons').find('#user_id_index').val();
+
+
+			$.ajax({
+				url: "delete.php",
+				type: "POST",
+				dataType: "text",
+				data: {delete_id:delete_id,user_id_index:user_id_index},
+				success: function (data) {
+		
+					// alert(user_id_index);
+				},
+			});
+		});
 
 
 	// ! update AJAX on the SAME PAGE

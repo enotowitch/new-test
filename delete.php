@@ -1,11 +1,13 @@
 <?
-// header("location: index.php");
+	require_once 'DB.php';
+	
+	$delete_id = $_POST['delete_id'];
+	$user_id_index = $_POST['user_id_index'];
 
-require_once 'DB.php';
+	// actually it's HIDING POST 
 
-$post_id = $_REQUEST['hidden_id_delete'];
-$user_id = $_POST['user_id'];
+	// ! todo later JOIN RECORDS
 
-$delete = mysqli_query($connect, "DELETE FROM `tbl_card` WHERE `tbl_card`.`job_post_id` = '$post_id' AND `user_id` = '$user_id'");
-
+	$hide_post = mysqli_query($connect, "UPDATE `users` SET `user_hidden_posts` = '$delete_id' 
+	WHERE `users`.`user_id` = '$user_id_index'");
 ?>

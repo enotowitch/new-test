@@ -454,3 +454,10 @@ a:active {
 .no-user a {
   color: #6fda44;
 }
+
+.destroy-btn {
+  position: absolute;
+  z-index: 99;
+  right: 6px;
+  top: 40px;
+}

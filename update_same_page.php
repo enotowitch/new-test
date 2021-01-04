@@ -802,6 +802,15 @@ $cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);
 		<label for="post-job-reset" class="post-job-reset-label icon-scale">
 			<img src="img/icons/cross.svg" alt="post-job-reset">
 		</label>
+
+					<!-- // ! USER ID for POSTS -->
+					<input type="hidden" id="user_id_index" value="<? echo $_SESSION['user']['user_id'] ?>">
+
+					<!-- // ! AJAX destroy form W/0 SUBMIT BUTTON-->
+
+					<input type="hidden" name="hidden_id_delete" value="<? echo $card["job_post_id"] ?>">
+					<img class="delete icon-scale destroy-btn" src="img/icons/delete.svg" alt="delete">
+
 		<input class="card__icons card-icons card__post-job-icons post-job-submit" type="submit" id="update-job-submit">
 		<label for="update-job-submit" class="post-job-submit-label icon-scale">
 			<img src="img/icons/info-ok-grey.svg" alt="post-job-submit">
