@@ -110,7 +110,7 @@ if($('.card-main').find('.card__icons img').hasClass('update-btn')){
 	//
 
 // ! MAKING FAKE SLIDER -> preventing 'Cannot read property 'getSlick' of undefined' so any slider should exist
-$('.slider').slick({slidesToShow: 1, asNavFor: '.nav-for' });
+$('.slider').slick();
 // ! hidding slider to show when 'img-zoom' clicked
 $('.slider-wrap').hide();
 
@@ -128,7 +128,7 @@ $(document).on('click', '.img-zoom' ,function(){
 	$(this).closest('.card-main').find('.card-slick').addClass('nav-for');
 
 	$('.slider').html(cloned_slick_slides);
-	$('.slider').slick({slidesToShow: 1, asNavFor: '.nav-for' });
+	$('.slider').slick({asNavFor: '.nav-for', lazyLoad: 'ondemand', infinite: true, speed: 500, fade: true, cssEase: 'linear', slidesToShow: 1  });
 	$('.slider').slick('goTo', parseInt(cur_slick_index));
 
 	$('.slider-wrap').show();
