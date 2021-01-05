@@ -41,7 +41,7 @@ include 'search.php';
 		<!-- ! card__post-job -->
 		<div class="card card__post-job">
 			<!-- ! FORM  -->
-			<form>
+			<form class="post-form">
 				<!--  -->
 				<label for="card__input-logo" class="card__logo card__input-logo-label">
 					<!-- todo later -->

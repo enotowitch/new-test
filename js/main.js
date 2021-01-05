@@ -172,6 +172,45 @@ $(document).on('click', '.zoom-out', function(){
 	
 	});
 
+
+	// ! validation if INFO = OK
+$('.post-form').on('change', function(){
+	
+	// pics
+	var logo = $('#card__input-logo').prop('files')[0];
+	var example_pic = $('#card-option__post-job-example').prop('files')[0];
+	//TOP
+	var job_title = $.trim($('#card__post-job-title').val());
+	var job_company_name = $.trim($('#card__post-job-company-name').val());
+	//  select INFO
+	var job_salary = $('[name="job_salary"]').find('option:selected').val();
+	var job_exp = $('[name="job_exp"]').find('option:selected').val();
+	var job_location = $('[name="job_location"]').find('option:selected').val();
+	var job_duration = $('[name="job_duration"]').find('option:selected').val();
+	var job_workload = $('[name="job_workload"]').find('option:selected').val();
+	// number of tags selected
+	var tags_chosen = $(this).find('.chosen-choices li').not('.search-field').length;
+
+		if(logo && example_pic && job_title != '' && job_company_name != '' && job_salary != 0 && job_exp != 0 && job_location != 0 && job_duration != 0 && job_workload != 0 && tags_chosen == 3){
+			
+			$('.post-job-submit-label img').attr('src', 'img/icons/info-ok.svg');
+		} else {
+			$('.post-job-submit-label img').attr('src', 'img/icons/info-ok-grey.svg');
+		}
+	
+
+});
+	// ! validation if INFO = OK (additional validation for tags chosen)
+$(document).on('click', '.card__post-job', function(){
+
+	var tags_chosen = $(this).find('.chosen-choices li').not('.search-field').length;
+
+	if(tags_chosen < 3){
+		$('.post-job-submit-label img').attr('src', 'img/icons/info-ok-grey.svg');
+	}
+});
+
+
 	// ! OLD
 
 // // ! POP UP clone for slick slider
