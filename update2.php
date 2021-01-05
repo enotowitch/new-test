@@ -1,6 +1,6 @@
 <?
 
-require_once 'DB.php';
+require 'DB.php';
 
 $id = $_REQUEST['hidden_id'];
 
@@ -22,21 +22,7 @@ $tag_name_3 = $_POST['tag_name_3'];
 
 
 
-// ! AJAX FILE
 
-// ! Path for uploading logo - IN POST JOB
-$logo_path = 'uploads/' . $_FILES['file']['name'];
-move_uploaded_file($_FILES['file']['tmp_name'], 'uploads/' . $_FILES['file']['name']);
-
-// ! 1
-$path_example_1 = 'uploads/' . $_FILES['path_example_1']['name'];
-move_uploaded_file($_FILES['path_example_1']['tmp_name'], 'uploads/' . $_FILES['path_example_1']['name']);
-// ! 2
-$path_example_2 = 'uploads/' . $_FILES['path_example_2']['name'];
-move_uploaded_file($_FILES['path_example_2']['tmp_name'], 'uploads/' . $_FILES['path_example_2']['name']);
-// ! 3
-$path_example_3 = 'uploads/' . $_FILES['path_example_3']['name'];
-move_uploaded_file($_FILES['path_example_3']['tmp_name'], 'uploads/' . $_FILES['path_example_3']['name']);
 
 
 
@@ -58,7 +44,7 @@ if(!($tag_name_3)){
 // 
 // 
 // 
-// ! IF ERRORS
+// ! if errors
 if(!empty($error_fields)){
 	$response = [
 		'type' => false,
@@ -69,12 +55,27 @@ if(!empty($error_fields)){
 
 	return;
 } 
+// ! if NO errors
+if(empty($error_fields)){
+
+// ! AJAX FILE
+
+// ! Path for uploading logo - IN POST JOB
+$logo_path = 'uploads/' . $_FILES['file']['name'];
+move_uploaded_file($_FILES['file']['tmp_name'], $logo_path);
+
+// ! 1
+$path_example_1 = 'uploads/' . $_FILES['path_example_1']['name'];
+move_uploaded_file($_FILES['path_example_1']['tmp_name'], $path_example_1);
+// ! 2
+$path_example_2 = 'uploads/' . $_FILES['path_example_2']['name'];
+move_uploaded_file($_FILES['path_example_2']['tmp_name'], $path_example_2);
+// ! 3
+$path_example_3 = 'uploads/' . $_FILES['path_example_3']['name'];
+move_uploaded_file($_FILES['path_example_3']['tmp_name'], $path_example_3);
 
 
 
-
-
-else{
 	// ! job_title
 	if(isset($job_title)){
 		mysqli_query($connect, "UPDATE `tbl_card` 

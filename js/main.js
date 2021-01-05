@@ -66,8 +66,8 @@ jQuery(document).ready(function () {
 		$(document).on('click', '.delete-btn', function(e){
 			e.preventDefault();
 
-			var delete_id = $(e.target).closest('.card').find('.card__icons').find('input[name="hidden_id_delete"]').val();
-			var user_id_index	= $(e.target).closest('.card').find('.card__icons').find('#user_id_index').val();
+			var delete_id = $(e.target).closest('.card').find('input[name="hidden_id_delete"]').val();
+			var user_id_index	= $(e.target).closest('.card').find('#user_id_index').val();
 
 
 			$.ajax({

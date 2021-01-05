@@ -1,7 +1,7 @@
 <?php
 // header("location: index.php");
 
-require_once 'DB.php';
+require 'DB.php';
 
 $job_title = $_POST["job_title"];
 $job_company_name = $_POST["job_company_name"];
@@ -21,21 +21,7 @@ $user_id = $_POST['user_id'];
 
 
 
-// AJAX FILE
 
-// ! Path for uploading logo - IN POST JOB
-$logo_path = 'uploads/' . $_FILES['file']['name'];
-move_uploaded_file($_FILES['file']['tmp_name'], 'uploads/' . $_FILES['file']['name']);
-
-// ! 1
-$path_example_1 = 'uploads/' . $_FILES['path_example_1']['name'];
-move_uploaded_file($_FILES['path_example_1']['tmp_name'], 'uploads/' . $_FILES['path_example_1']['name']);
-// ! 2
-$path_example_2 = 'uploads/' . $_FILES['path_example_2']['name'];
-move_uploaded_file($_FILES['path_example_2']['tmp_name'], 'uploads/' . $_FILES['path_example_2']['name']);
-// ! 3
-$path_example_3 = 'uploads/' . $_FILES['path_example_3']['name'];
-move_uploaded_file($_FILES['path_example_3']['tmp_name'], 'uploads/' . $_FILES['path_example_3']['name']);
 
 
 
@@ -84,18 +70,37 @@ if(!$_FILES['path_example_1']['name']){
 }
 //
 //
-// ! IF ERRORS
+// ! if errors
 if(!empty($error_fields)){
 	$response = [
 		'type' => false,
 		'fields' => $error_fields
 	];
-} else{
+} 
+// ! if NO errors
+if(empty($error_fields)){
 
 	$response = [
 		'type' => true,
 		'msg' => 'POSTED!'
 	];
+
+	// AJAX FILE
+
+// ! Path for uploading logo - IN POST JOB
+$logo_path = 'uploads/' . $_FILES['file']['name'];
+move_uploaded_file($_FILES['file']['tmp_name'], $logo_path);
+
+// ! 1
+$path_example_1 = 'uploads/' . $_FILES['path_example_1']['name'];
+move_uploaded_file($_FILES['path_example_1']['tmp_name'], $path_example_1);
+// ! 2
+$path_example_2 = 'uploads/' . $_FILES['path_example_2']['name'];
+move_uploaded_file($_FILES['path_example_2']['tmp_name'], $path_example_2);
+// ! 3
+$path_example_3 = 'uploads/' . $_FILES['path_example_3']['name'];
+move_uploaded_file($_FILES['path_example_3']['tmp_name'], $path_example_3);
+
 
 
 	$insert = mysqli_query($connect, "INSERT INTO `tbl_card` 
