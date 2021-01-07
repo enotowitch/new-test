@@ -74,6 +74,13 @@ foreach($delete_files_up as $file){
 	$ex_3 = $file["path_example_3"];
 }
 
+// DO NOTHING if OLD logo REMAINS => if NEW logo posted =>
+if($_FILES['file']['name']){
+	unlink(strval ($logo));
+	// new logo uploads below
+}
+
+
 // DO NOTHING if OLD pics REMAIN or if NEW pics posted => DELETE from UPLOADS and in DB => write 'uploads/' = NO PIC
 if($_FILES['path_example_1']['name']){
 	
