@@ -55,10 +55,43 @@ if(!empty($error_fields)){
 
 	return;
 } 
-// ! if NO errors
+// ? if NO errors
 if(empty($error_fields)){
 
 // ! AJAX FILE
+
+// ! before loading NEW need to delete OLD
+// select which file(s) to delete from UPLOADS
+$delete_files_up = mysqli_query($connect, "SELECT * FROM `tbl_card` WHERE `tbl_card`.`job_post_id` = '$id'");
+
+$delete_files_up = mysqli_fetch_all($delete_files_up, MYSQLI_ASSOC);
+
+
+foreach($delete_files_up as $file){
+	$logo = $file["logo_path"];
+	$ex_1 = $file["path_example_1"];
+	$ex_2 = $file["path_example_2"];
+	$ex_3 = $file["path_example_3"];
+}
+
+// DO NOTHING if OLD pics REMAIN or if NEW pics posted => DELETE from UPLOADS and in DB => write 'uploads/' = NO PIC
+if($_FILES['path_example_1']['name']){
+	
+	if($ex_1 != 'uploads/'){
+		unlink(strval ($ex_1));
+		mysqli_query($connect, "UPDATE `tbl_card` SET `path_example_1` = 'uploads/' WHERE `tbl_card`.`job_post_id` = '$id'");
+	}
+	if($ex_2 != 'uploads/'){
+		unlink(strval ($ex_2));
+		mysqli_query($connect, "UPDATE `tbl_card` SET `path_example_2` = 'uploads/' WHERE `tbl_card`.`job_post_id` = '$id'");
+	}
+	if($ex_3 != 'uploads/'){
+		unlink(strval ($ex_3));
+		mysqli_query($connect, "UPDATE `tbl_card` SET `path_example_3` = 'uploads/' WHERE `tbl_card`.`job_post_id` = '$id'");
+	}
+
+}
+
 
 // ! Path for uploading logo - IN POST JOB
 $logo_path = 'uploads/' . $_FILES['file']['name'];
@@ -144,7 +177,7 @@ move_uploaded_file($_FILES['path_example_3']['tmp_name'], $path_example_3);
 	}
 
 
-	// ! if 1 example exists => update all examples, then all EMPTY will have 'uploads/' and will not be shown
+	// ! if 1 NEW example exists => update all examples, then all EMPTY will have 'uploads/' and will not be shown
 	if($_FILES['path_example_1']['name']){
 mysqli_query($connect, "UPDATE `tbl_card` 
 		SET 
