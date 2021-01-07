@@ -4,7 +4,7 @@ session_start();
 
 <?
 
-require_once 'DB.php';
+require 'DB.php';
 
 $id = $_POST['hidden_id_update'];
 
@@ -14,20 +14,6 @@ $cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);
 
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Update</title>
-	<link rel="stylesheet" href="css/style.css">
-	<link rel="stylesheet" href="css/header.css">
-	<link rel="stylesheet" href="css/post-job.css">
-	<link rel="stylesheet" href="css/profile.css">
-	<link rel="stylesheet" href="css/search.css">
-	<link rel="stylesheet" href="chosen/chosen.css">
-</head>
 
 <style>
 		.prev-selected {
@@ -846,30 +832,30 @@ $cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);
 	include 'footer.php';
 	?>
 
-	<script>
+<script>
 
-	$(document).ready(function(){
+$(document).ready(function(){
 
-		var hidden_pics = $('#hidden-example-pics');
+	var hidden_pics = $('#hidden-example-pics');
 
-		// ! checking how many pics came from db to !SIMULATE! how many loaded
+	// ! checking how many pics came from db to !SIMULATE! how many loaded
 
 if(hidden_pics[0].children.length == 1){
-	// !SIMULATE! 1/3 pictures came from DB  
-	$('label[for="card-option__update-job-example"]').empty().html('<div>1/3 pic</div>').css({ 'background': '#6fda44', 'width': '49px' });
+// !SIMULATE! 1/3 pictures came from DB  
+$('label[for="card-option__update-job-example"]').empty().html('<div>1/3 pic</div>').css({ 'background': '#6fda44', 'width': '49px' });
 }
 if(hidden_pics[0].children.length == 2){
-	// !SIMULATE! 2/3 pictures came from DB  
-	$('label[for="card-option__update-job-example"]').empty().html('<div>2/3 pics</div>').css({ 'background': '#6fda44', 'width': '69px' });
+// !SIMULATE! 2/3 pictures came from DB  
+$('label[for="card-option__update-job-example"]').empty().html('<div>2/3 pics</div>').css({ 'background': '#6fda44', 'width': '69px' });
 }
 if(hidden_pics[0].children.length == 3){
-	// !SIMULATE! 3/3 pictures came from DB  
-	$('label[for="card-option__update-job-example"]').empty().html('<div>3/3 pics</div>').css({ 'background': '#6fda44', 'width': '100px' });
+// !SIMULATE! 3/3 pictures came from DB  
+$('label[for="card-option__update-job-example"]').empty().html('<div>3/3 pics</div>').css({ 'background': '#6fda44', 'width': '100px' });
 }
 
 
 
-		
+	
 // ! ajax form to update2.php
 
 $('#update-job-submit').on('click', function (e) {
@@ -935,58 +921,58 @@ form_data.append('tag_name_3', tag_name_3);
 form_data.append('hidden_id', hidden_id);
 
 $.ajax({
-	url: 'update2.php',
-	dataType: 'json',
-	cache: false,
-	contentType: false,
-	processData: false,
-	data: form_data,
-	type: 'POST',
-	success: function (response) {
+url: 'update2.php',
+dataType: 'json',
+cache: false,
+contentType: false,
+processData: false,
+data: form_data,
+type: 'POST',
+success: function (response) {
 
 // ! getting JSON response from update2.php
-				if(response.type == false){
-					response.fields.forEach(function(field){
-						$(`textarea[name="${field}"]`).css({'outline':'2px solid tomato'});
-						// $(`.chosen-container-single[title="${field}"]`).css({'box-shadow':'0 0 3pt 1.5pt tomato', 'border-radius': '5px'});
+			if(response.type == false){
+				response.fields.forEach(function(field){
+					$(`textarea[name="${field}"]`).css({'outline':'2px solid tomato'});
+					// $(`.chosen-container-single[title="${field}"]`).css({'box-shadow':'0 0 3pt 1.5pt tomato', 'border-radius': '5px'});
 // ! IF TAGS < 3 show error
-						if(field == "tags_not_3"){
-							$(`#update_job_tags_select_chosen`).css({'outline':'2px solid tomato', 'border-radius': '5px'});
-						} 
-						// ! IF NO LOGO
-						if(field == "no logo"){
-							$('label[for="update__input-logo"]').css({'border':'2px solid tomato'});
-						} 
-						// ! IF EXAMPLES < 3
-						if(field == "examples_not_3"){
-							$('label[for="card-option__update-job-example"]').css({'box-shadow':'0 0 3pt 1.5pt tomato'});
-						} 
+					if(field == "tags_not_3"){
+						$(`#update_job_tags_select_chosen`).css({'outline':'2px solid tomato', 'border-radius': '5px'});
+					} 
+					// ! IF NO LOGO
+					if(field == "no logo"){
+						$('label[for="update__input-logo"]').css({'border':'2px solid tomato'});
+					} 
+					// ! IF EXAMPLES < 3
+					if(field == "examples_not_3"){
+						$('label[for="card-option__update-job-example"]').css({'box-shadow':'0 0 3pt 1.5pt tomato'});
+					} 
 // ! timeout for errors
-						setTimeout(() => {
-							$(`textarea[name="${field}"]`).html('').css({'outline':'none'});
-							// $(`.chosen-container-single[title="${field}"]`).css({'box-shadow':'none'});
-							$(`#update_job_tags_select_chosen`).css({'outline':'none'});
-							$('label[for="update__input-logo"]').css({'border':'2px solid #969696'});
-							$('label[for="card-option__update-job-example"]').css({'box-shadow':'none'});
-				}, 500);
-					});
-				} 
+					setTimeout(() => {
+						$(`textarea[name="${field}"]`).html('').css({'outline':'none'});
+						// $(`.chosen-container-single[title="${field}"]`).css({'box-shadow':'none'});
+						$(`#update_job_tags_select_chosen`).css({'outline':'none'});
+						$('label[for="update__input-logo"]').css({'border':'2px solid #969696'});
+						$('label[for="card-option__update-job-example"]').css({'box-shadow':'none'});
+			}, 500);
+				});
+			} 
 // false ends here
 if(response.type == true){
-	update_card.html('<div class="success-anim-wid0"><p style="color: white; font-size: 30px">' + response.msg + '</p></div>');
-	$('.success-anim-wid0').animate({'width':'100%'});
+update_card.html('<div class="success-anim-wid0"><p style="color: white; font-size: 30px">' + response.msg + '</p></div>');
+$('.success-anim-wid0').animate({'width':'100%'});
 setTimeout(() => {
-	window.location.reload();
+window.location.reload();
 }, 500);
 }
 
-			}
-		});
+		}
+	});
 
 });
 
 
-	});
+});
 
 
 
