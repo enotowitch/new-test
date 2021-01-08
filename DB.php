@@ -1,15 +1,8 @@
-<?php
-// DB.php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "smth";
+<?
+require 'RB/rb.php';
 
-$connect = new mysqli($servername, $username, $password, $dbname);
+R::setup( 'mysql:host=localhost;dbname=smth',
+    'root', '' );
 
-if($connect->connect_error){
-die("Connection failed");
-}
-// echo "conn success";
-// header("location: index.php");
+
 ?>

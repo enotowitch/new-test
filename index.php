@@ -1,5 +1,6 @@
 <?
 session_start();
+require "DB.php";
 include 'header.php';
 ?>
 <!-- !!! TEST-->
@@ -40,16 +41,14 @@ include 'search.php';
 		</a>
 	</div>
 	<div class="main-cards-inner">
-		<!--  -->
-		<!-- ! MAIN CARD php -->
-		<!-- ! PHP -->
-		<?php
 
-			
-			require_once 'DB.php';
-			
-			$cards = mysqli_query($connect, "SELECT * from `tbl_card`");
-			$cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);			
+		<!-- ! MAIN CARD php -->
+
+		<?php
+		
+			$cards = R::findAll('jobs');
+			// $cards = mysqli_query($connect, "SELECT * from `tbl_card`");
+			// $cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);			
 			?>
 
 		<? foreach($cards as $card): ?>
@@ -57,27 +56,27 @@ include 'search.php';
 		<div class="card card-main">
 			<img class="card__logo" src="<? echo $card["logo_path"] ?>" alt="post-job-logo">
 			<div class="card__job-title">
-				<? echo $card["job_title"] ?>
+				<? echo $card["title"] ?>
 			</div>
 			<div class="card__company-name">
-				<? echo $card["job_company_name"] ?>
+				<? echo $card["company_name"] ?>
 			</div>
 			<!-- ! card-option -->
 			<ul>
 				<li class="card-option__salary">
-					<? echo $card["job_salary"] ?>
+					<? echo $card["salary"] ?>
 				</li>
 				<li class="card-option__exp">
-					<? echo $card["job_exp"] ?>
+					<? echo $card["exp"] ?>
 				</li>
 				<li class="card-option__location">
-					<? echo $card["job_location"] ?>
+					<? echo $card["location"] ?>
 				</li>
 				<li class="card-option__duration">
-					<? echo $card["job_duration"] ?>
+					<? echo $card["duration"] ?>
 				</li>
 				<li class="card-option__workload">
-					<? echo $card["job_workload"] ?>
+					<? echo $card["workload"] ?>
 				</li>
 				<li class="card-option__example card-option__example_main-card-example">Example</li>
 				<div class="card card-slick" hidden>
@@ -109,13 +108,13 @@ include 'search.php';
 					<!-- // ! show UPDATE only for CURRENT user -->
 	<? if($_SESSION['user']['user_id'] == $card["user_id"]): ?>
 				<!-- // ! AJAX update form W/0 SUBMIT BUTTON-->
-				<input type="hidden" name="hidden_id_update" value="<? echo $card["job_post_id"] ?>">
+				<input type="hidden" name="hidden_id_update" value="<? echo $card["id"] ?>">
 					<img class="icon-scale update-btn" src="img/icons/update.svg" alt="update">
 		<? endif;?>
 
 					<!-- // ! AJAX delete form W/0 SUBMIT BUTTON-->
 
-					<input type="hidden" name="hidden_id_delete" value="<? echo $card["job_post_id"] ?>">
+					<input type="hidden" name="hidden_id_delete" value="<? echo $card["id"] ?>">
 					<img class="delete icon-scale delete-btn" src="img/icons/delete.svg" alt="delete">
 
 					<!-- // ! USER ID for POSTS -->
@@ -128,14 +127,8 @@ include 'search.php';
 
 		<? endforeach; ?>
 
-
-		<?
-			$connect-> close();
-			?>
-		<!-- ? PHP -->
 		<!-- ? MAIN CARD php -->
 
-		<!--  -->
 	</div>
 </div>
 <!--  -->

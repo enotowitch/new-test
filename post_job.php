@@ -1,5 +1,6 @@
 <?
 session_start();
+require "DB.php";
 include 'header.php';
 
 $cur_user = $_SESSION['user']['user_id'];
@@ -806,16 +807,14 @@ include 'search.php';
 <!-- // ! UPDATE - POSTS of the current USER-->
 <section>
 <div class="main-cards-inner">
-		<!--  -->
-		<!-- ! MAIN CARD php -->
-		<!-- ! PHP -->
-		<?php
 
+		<!-- ! MAIN CARD php -->
+
+		<?php
 			
-			require_once 'DB.php';
-			
-			$cards = mysqli_query($connect, "SELECT * from `tbl_card` WHERE `user_id` = '$cur_user'");
-			$cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);			
+			$cards = R::find('tbl_card', 'user_id = ?', [$cur_user]);
+			// $cards = mysqli_query($connect, "SELECT * from `tbl_card` WHERE `user_id` = '$cur_user'");
+			// $cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);			
 			?>
 
 		<? foreach($cards as $card): ?>
@@ -889,14 +888,8 @@ include 'search.php';
 
 		<? endforeach; ?>
 
-
-		<?
-			$connect-> close();
-			?>
-		<!-- ? PHP -->
 		<!-- ? MAIN CARD php -->
 
-		<!--  -->
 	</div>
 </section>
 
