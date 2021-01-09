@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require 'DB.php';
 
 // ! VALIDATION 
@@ -87,7 +87,7 @@ move_uploaded_file($_FILES['path_example_3']['tmp_name'], $path_example_3);
 
 $jobs = R::dispense( 'jobs' );
 
-$jobs->user_id = rand();
+$jobs->user_id = $_SESSION['user']['user_id'];
 // $jobs->user_id = $_POST["user_id"];
 
 

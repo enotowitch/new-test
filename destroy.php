@@ -7,9 +7,11 @@ $post_id = $_REQUEST['hidden_id_delete'];
 $user_id = $_POST['user_id'];
 
 // ! first delete files form UPLOADS, then destroy DB record
-$delete_files = mysqli_query($connect, "SELECT * FROM `tbl_card` WHERE `tbl_card`.`job_post_id` = '$post_id' AND `user_id` = '$user_id'");
+// $delete_files = mysqli_query($connect, "SELECT * FROM `tbl_card` WHERE `tbl_card`.`job_post_id` = '$post_id' AND `user_id` = '$user_id'");
 
-$delete_files = mysqli_fetch_all($delete_files, MYSQLI_ASSOC);
+// $delete_files = mysqli_fetch_all($delete_files, MYSQLI_ASSOC);
+
+$delete_files = R::find('jobs', 'id = ? AND user_id = ?', [$post_id, $user_id]);
 
 
 foreach($delete_files as $file){
@@ -25,7 +27,9 @@ unlink(strval ($ex_2));
 unlink(strval ($ex_3));
 
 
-$delete = mysqli_query($connect, "DELETE FROM `tbl_card` WHERE `tbl_card`.`job_post_id` = '$post_id' AND `user_id` = '$user_id'");
+// $delete = mysqli_query($connect, "DELETE FROM `tbl_card` WHERE `tbl_card`.`job_post_id` = '$post_id' AND `user_id` = '$user_id'");
+
+$delete = R::hunt('jobs', 'id = ? AND user_id = ?', [$post_id, $user_id]);
 
 
 

@@ -8,9 +8,9 @@ require 'DB.php';
 
 $id = $_POST['hidden_id_update'];
 
-
-$cards = mysqli_query($connect, "SELECT * from `tbl_card` WHERE `tbl_card`.`job_post_id` = '$id'");
-$cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);	
+$cards = R::find('jobs', 'id = ?', [$id]);
+// $cards = mysqli_query($connect, "SELECT * from `tbl_card` WHERE `tbl_card`.`job_post_id` = '$id'");
+// $cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);	
 
 ?>
 
@@ -50,18 +50,18 @@ $cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);
 		
 		<textarea class="card__job-title card__post-job-title" id="update__post-job-title" name="update_job_title"
 			placeholder="Type a job title you're looking for..." maxlength="40"
-			minlength="4"><? echo $card["job_title"] ?></textarea>
+			minlength="4"><? echo $card["title"] ?></textarea>
 		<textarea class="card__company-name card__post-job-company-name" id="update__post-job-company-name"
 			name="update_job_company_name" placeholder="Type your company name..." maxlength="50"
-			minlength="2"><? echo $card["job_company_name"] ?></textarea>
+			minlength="2"><? echo $card["company_name"] ?></textarea>
 		<!--  -->
 
 		<ul class="card__post-job-options">
 			<li class="card-option__salary card-option__post-job-salary" id="card-option__post-job-salary">
 				<select class="post-job-salary-select" name="update_job_salary" title="Salary">
 					<option selected disabled value="0">Salary</option>
-					<option class="prev-selected" selected value="<? echo $card["job_salary"] ?>">
-						<? echo $card["job_salary"] ?>
+					<option class="prev-selected" selected value="<? echo $card["salary"] ?>">
+						<? echo $card["salary"] ?>
 					</option>
 					<option value="100 USD">100 USD</option>
 					<option value="200 USD">200 USD</option>
@@ -167,8 +167,8 @@ $cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);
 			<li class="card-option__exp card-option__post-job-exp" id="card-option__post-job-exp">
 				<select class="post-job-exp-select" name="update_job_exp" title="Experience">
 					<option selected disabled value="0">Experience</option>
-					<option class="prev-selected" selected value="<? echo $card["job_exp"] ?>">
-						<? echo $card["job_exp"] ?>
+					<option class="prev-selected" selected value="<? echo $card["exp"] ?>">
+						<? echo $card["exp"] ?>
 					</option>
 					<option value="No Exp.">No Exp.</option>
 					<option value="1 year">1 year</option>
@@ -226,8 +226,8 @@ $cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);
 			<li class="card-option__location card-option__post-job-location" id="card-option__post-job-location">
 				<select class="post-job-country-select" name="update_job_location" title="Country">
 					<option selected disabled value="0">Location</option>
-					<option class="prev-selected" selected value="<? echo $card["job_location"] ?>">
-						<? echo $card["job_location"] ?>
+					<option class="prev-selected" selected value="<? echo $card["location"] ?>">
+						<? echo $card["location"] ?>
 					</option>
 					<option value="Worldwide">Worldwide</option>
 					<option value="Afghanistan">Afghanistan</option>
@@ -492,8 +492,8 @@ $cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);
 			<li class="card-option__duration" id="card-option__post-job-duration">
 				<select class="post-job-duration-select" name="update_job_duration" title="Duration">
 					<option selected disabled value="0">Duration</option>
-					<option class="prev-selected" selected value="<? echo $card["job_duration"] ?>">
-						<? echo $card["job_duration"] ?>
+					<option class="prev-selected" selected value="<? echo $card["duration"] ?>">
+						<? echo $card["duration"] ?>
 					</option>
 					<option value="Permanent">Permanent</option>
 					<option value="Temporary">Temporary</option>
@@ -503,8 +503,8 @@ $cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);
 			<li class="card-option__workload" id="card-option__post-job-workload">
 				<select class="post-job-workload-select" name="update_job_workload" title="Workload">
 					<option selected disabled value="0">Workload</option>
-					<option class="prev-selected" selected value="<? echo $card["job_workload"] ?>">
-						<? echo $card["job_workload"] ?>
+					<option class="prev-selected" selected value="<? echo $card["workload"] ?>">
+						<? echo $card["workload"] ?>
 					</option>
 					<option value="1 /mo">1 /mo</option>
 					<option value="2 h/mo">2 h/mo</option>
@@ -794,7 +794,7 @@ $cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);
 
 					<!-- // ! AJAX destroy form W/0 SUBMIT BUTTON-->
 
-					<input type="hidden" name="hidden_id_delete" value="<? echo $card["job_post_id"] ?>">
+					<input type="hidden" name="hidden_id_delete" value="<? echo $card['id'] ?>">
 					<img class="delete icon-scale destroy-btn" src="img/icons/delete.svg" alt="delete">
 
 		<input class="card__icons card-icons card__post-job-icons post-job-submit" type="submit" id="update-job-submit">
@@ -803,7 +803,7 @@ $cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);
 		</label>
 
 		<!-- ! hiiden ID for update2.php -->
-		<input type="hidden" value="<? echo $card['job_post_id'] ?>" name="hidden_id">
+		<input type="hidden" value="<? echo $card['id'] ?>" name="hidden_id">
 		<!-- ! hiiden ID for update2.php -->
 
 <!-- ! HIDDEN pics to count how many are chosen in "LOAD EXAMPLE" -->

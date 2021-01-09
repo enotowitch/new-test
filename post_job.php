@@ -812,7 +812,7 @@ include 'search.php';
 
 		<?php
 			
-			$cards = R::find('tbl_card', 'user_id = ?', [$cur_user]);
+			$cards = R::find('jobs', 'user_id = ?', [$cur_user]);
 			// $cards = mysqli_query($connect, "SELECT * from `tbl_card` WHERE `user_id` = '$cur_user'");
 			// $cards = mysqli_fetch_all($cards, MYSQLI_ASSOC);			
 			?>
@@ -822,27 +822,27 @@ include 'search.php';
 		<div class="card card-main">
 			<img class="card__logo" src="<? echo $card["logo_path"] ?>" alt="post-job-logo">
 			<div class="card__job-title">
-				<? echo $card["job_title"] ?>
+				<? echo $card["title"] ?>
 			</div>
 			<div class="card__company-name">
-				<? echo $card["job_company_name"] ?>
+				<? echo $card["company_name"] ?>
 			</div>
 			<!-- ! card-option -->
 			<ul>
 				<li class="card-option__salary">
-					<? echo $card["job_salary"] ?>
+					<? echo $card["salary"] ?>
 				</li>
 				<li class="card-option__exp">
-					<? echo $card["job_exp"] ?>
+					<? echo $card["exp"] ?>
 				</li>
 				<li class="card-option__location">
-					<? echo $card["job_location"] ?>
+					<? echo $card["location"] ?>
 				</li>
 				<li class="card-option__duration">
-					<? echo $card["job_duration"] ?>
+					<? echo $card["duration"] ?>
 				</li>
 				<li class="card-option__workload">
-					<? echo $card["job_workload"] ?>
+					<? echo $card["workload"] ?>
 				</li>
 				<li class="card-option__example card-option__example_main-card-example">Example</li>
 				<div class="card card-slick" hidden>
@@ -873,12 +873,12 @@ include 'search.php';
 			<div class="card__icons card-icons">
 					<!-- // ! AJAX update form W/0 SUBMIT BUTTON-->
 	
-					<input type="hidden" name="hidden_id_update" value="<? echo $card["job_post_id"] ?>">
+					<input type="hidden" name="hidden_id_update" value="<? echo $card["id"] ?>">
 					<img class="icon-scale update-btn" src="img/icons/update.svg" alt="update">
 					
 					<!-- // ! AJAX delete form W/0 SUBMIT BUTTON-->
 
-					<input type="hidden" name="hidden_id_delete" value="<? echo $card["job_post_id"] ?>">
+					<input type="hidden" name="hidden_id_delete" value="<? echo $card["id"] ?>">
 					<img class="delete icon-scale delete-btn" src="img/icons/delete.svg" alt="delete">
 
 				<img class="like icon-scale" src="img/icons/like.svg" alt="like">
