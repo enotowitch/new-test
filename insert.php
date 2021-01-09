@@ -2,39 +2,54 @@
 session_start();
 require 'DB.php';
 
+$title = htmlentities($_POST["job_title"]);
+$company_name = htmlentities($_POST["job_company_name"]);
+$salary = htmlentities($_POST["job_salary"]);
+$exp = htmlentities($_POST["job_exp"]);
+$location = htmlentities($_POST["job_location"]);
+$duration = htmlentities($_POST["job_duration"]);
+$workload = htmlentities($_POST["job_workload"]);
+
+// TAGS
+$tag_name_1 = htmlentities($_POST['tag_name_1']);
+$tag_name_2 = htmlentities($_POST['tag_name_2']);
+$tag_name_3 = htmlentities($_POST['tag_name_3']);
+
+$user_id = $_SESSION['user']['user_id'];
+
 // ! VALIDATION 
 
 $error_fields = [];
 // ! job_title
-if(!$_POST["job_title"]){
+if(!$title){
 	$error_fields[] = 'job_title';
 }
 // ! job_company_name
-if(!$_POST["job_company_name"]){
+if(!$company_name){
 	$error_fields[] = 'job_company_name';
 }
 // ! job_salary FOR CHOSEN PLUGIN title="Salary"
-if(!$_POST["job_salary"]){
+if(!$salary){
 	$error_fields[] = 'Salary';
 }
 // ! job_exp FOR CHOSEN PLUGIN title="Experience"
-if(!$_POST["job_exp"]){
+if(!$exp){
 	$error_fields[] = 'Experience';
 }
 // ! job_location FOR CHOSEN PLUGIN title="Country"
-if(!$_POST["job_location"]){
+if(!$location){
 	$error_fields[] = 'Country';
 }
 // ! job_duration FOR CHOSEN PLUGIN title="Duration"
-if(!$_POST["job_duration"]){
+if(!$duration){
 	$error_fields[] = 'Duration';
 }
 // ! job_workload FOR CHOSEN PLUGIN title="Workload"
-if(!$_POST["job_workload"]){
+if(!$workload){
 	$error_fields[] = 'Workload';
 }
 // ! CHECK if tags = 3
-if(!$_POST['tag_name_3']){
+if(!($tag_name_3)){
 	$error_fields[] = 'tags_not_3';
 }
 // ! NO LOGO
@@ -80,29 +95,23 @@ move_uploaded_file($_FILES['path_example_3']['tmp_name'], $path_example_3);
 
 
 
-// 	$insert = mysqli_query($connect, "INSERT INTO `tbl_card` 
-// (`job_post_id`, `job_title`, `job_company_name`, `job_status`, `job_salary`, `job_exp`, `job_location`, `job_duration`, `job_workload`, `tag_name_1`, `tag_name_2`, `tag_name_3`, `logo_path`, `path_example_1`, `path_example_2`, `path_example_3`, `user_id`) VALUES 
-//          (NULL, '$job_title', '$job_company_name', 'POSTED', '$job_salary', '$job_exp', '$job_location', '$job_duration', '$job_workload' ,'$tag_name_1' ,'$tag_name_2' ,'$tag_name_3','$logo_path','$path_example_1','$path_example_2','$path_example_3','$user_id')");
-
-
 $jobs = R::dispense( 'jobs' );
 
-$jobs->user_id = $_SESSION['user']['user_id'];
-// $jobs->user_id = $_POST["user_id"];
+$jobs->user_id = $user_id;
 
 
-$jobs->title = $_POST["job_title"];
-$jobs->company_name = $_POST["job_company_name"];
+$jobs->title = $title;
+$jobs->company_name = $company_name;
 
-$jobs->salary = $_POST["job_salary"];
-$jobs->exp = $_POST["job_exp"];
-$jobs->location = $_POST["job_location"];
-$jobs->duration = $_POST["job_duration"];
-$jobs->workload = $_POST["job_workload"];
+$jobs->salary = $salary;
+$jobs->exp = $exp;
+$jobs->location = $location;
+$jobs->duration = $duration;
+$jobs->workload = $workload;
 
-$jobs->tag_name_1 = $_POST["tag_name_1"];
-$jobs->tag_name_2 = $_POST["tag_name_2"];
-$jobs->tag_name_3 = $_POST["tag_name_3"];
+$jobs->tag_name_1 = $tag_name_1;
+$jobs->tag_name_2 = $tag_name_2;
+$jobs->tag_name_3 = $tag_name_3;
 
 $jobs->logo_path = $logo_path;
 $jobs->path_example_1 = $path_example_1;

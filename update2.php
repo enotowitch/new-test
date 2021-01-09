@@ -2,23 +2,40 @@
 
 require 'DB.php';
 
-$id = $_REQUEST['hidden_id'];
+$id = htmlentities($_POST['hidden_id']);
+
 $jobs = R::findOne( 'jobs', 'id = ?', [$id] );
+
+$job_title = htmlentities($_POST["job_title"]);
+$job_company_name = htmlentities($_POST["job_company_name"]);
+$job_salary = htmlentities($_POST["job_salary"]);
+$job_exp = htmlentities($_POST["job_exp"]);
+$job_location = htmlentities($_POST["job_location"]);
+$job_duration = htmlentities($_POST["job_duration"]);
+$job_workload = htmlentities($_POST["job_workload"]);
+
+
+
+// ! AJAX TAGS
+$tag_name_1 = htmlentities($_POST['tag_name_1']);
+$tag_name_2 = htmlentities($_POST['tag_name_2']);
+$tag_name_3 = htmlentities($_POST['tag_name_3']);
+
 
 
 // ! VALIDATION 
 
 $error_fields = [];
 // ! job_title
-if(!$_POST["job_title"]){
+if(!$job_title){
 	$error_fields[] = 'update_job_title';
 }
 // ! job_company_name
-if(!$_POST["job_company_name"]){
+if(!$job_company_name){
 	$error_fields[] = 'update_job_company_name';
 }
 // ! CHECK if tags = 3
-if(!($_POST['tag_name_3'])){
+if(!($tag_name_3)){
 	$error_fields[] = 'tags_not_3';
 }
 // 
@@ -52,12 +69,14 @@ if($_FILES['file']['name']){
 		$logo_path = 'uploads/' . $_FILES['file']['name'];
 		move_uploaded_file($_FILES['file']['tmp_name'], $logo_path);		
 	// change rec
-		$jobs->logo_path = $logo_path;		
+		$jobs->logo_path = $logo_path;
+		
 }
 
-// ! DO NOTHING if OLD pics REMAIN or if NEW pics posted => DELETE from UPLOADS and in DB => write 'uploads/' = NO PIC
+// DO NOTHING if OLD pics REMAIN or if NEW pics posted => DELETE from UPLOADS and in DB => write 'uploads/' = NO PIC
 if($_FILES['path_example_1']['name']){
 	
+
 $ex_1 = R::getCell("select path_example_1 from jobs where id='$id'");
 $ex_2 = R::getCell("select path_example_2 from jobs where id='$id'");
 $ex_3 = R::getCell("select path_example_3 from jobs where id='$id'");
@@ -102,7 +121,7 @@ if($ex_3 != 'uploads/'){
 	
 
 				
-	// ! if 1 NEW example exists => update all examples, then all EMPTY will have 'uploads/' and will not be shown
+	
 				if($_FILES['path_example_1']['name']){
 
 					$jobs->path_example_1 = $path_example_1;
@@ -115,44 +134,44 @@ if($ex_3 != 'uploads/'){
 
 
 	// ! job_title
-	if(isset($_POST["job_title"])){
-		$jobs->title = $_POST["job_title"];
+	if(isset($job_title)){
+		$jobs->title = $job_title;
 	}
 	// ! job_company_name
-	if(isset($_POST["job_company_name"])){
-		$jobs->company_name = $_POST["job_company_name"];
+	if(isset($job_company_name)){
+		$jobs->company_name = $job_company_name;
 	}
 	// ! job_salary
-	if(isset($_POST["job_salary"])){
-		$jobs->salary = $_POST["job_salary"];
+	if(isset($job_salary)){
+		$jobs->salary = $job_salary;
 	}
 	// ! job_exp
-	if(isset($_POST["job_exp"])){
-		$jobs->exp = $_POST["job_exp"];
+	if(isset($job_exp)){
+		$jobs->exp = $job_exp;
 	}
 	// ! job_location
-	if(isset($_POST["job_location"])){
-		$jobs->location = $_POST["job_location"];
+	if(isset($job_location)){
+		$jobs->location = $job_location;
 	}
 	// ! job_duration
-	if(isset($_POST["job_duration"])){
-		$jobs->duration = $_POST["job_duration"];
+	if(isset($job_duration)){
+		$jobs->duration = $job_duration;
 	}
 	// ! job_workload
-	if(isset($_POST["job_workload"])){
-		$jobs->workload = $_POST["job_workload"];
+	if(isset($job_workload)){
+		$jobs->workload = $job_workload;
 	}
 	// ! TAG 1
-	if(isset($_POST['tag_name_1'])){
-		$jobs->tag_name_1 = $_POST['tag_name_1'];
+	if(isset($tag_name_1)){
+		$jobs->tag_name_1 = $tag_name_1;
 	}
 	// ! TAG 2
-	if(isset($_POST['tag_name_2'])){
-		$jobs->tag_name_2 = $_POST['tag_name_2'];
+	if(isset($tag_name_2)){
+		$jobs->tag_name_2 = $tag_name_2;
 	}
 	// ! TAG 3
-	if(isset($_POST['tag_name_3'])){
-		$jobs->tag_name_3 = $_POST['tag_name_3'];
+	if(isset($tag_name_3)){
+		$jobs->tag_name_3 = $tag_name_3;
 	}
 
 
