@@ -14,10 +14,10 @@ function empty_logo_input(err_msg) {
 	}, 3000);
 }
 
-function empty_examples_input(err_msg){
+function empty_examples_input(err_msg) {
 	$('.card-option__example-li').empty();
 	$('.card-option__example-li').append('<label for="card-option__post-job-example" class="card-option__post-job-example-label">Load Example</label>');
-	$('.card-option__example-li').append('<div class="err_examples" style=" width: 280px; display: none; position: absolute; z-index: 99; top: 133px; left: 100px; background-color: #fff; color: tomato;">'+ err_msg +'</div>');
+	$('.card-option__example-li').append('<div class="err_examples" style=" width: 280px; display: none; position: absolute; z-index: 99; top: 133px; left: 100px; background-color: #fff; color: tomato;">' + err_msg + '</div>');
 	$('.err_examples').slideDown(300);
 	setTimeout(() => {
 		$('.err_examples').slideUp(300);
@@ -42,7 +42,7 @@ $(document).ready(function () {
 			return;
 		}
 		if (type != 'image/jpeg' && type != 'image/png' && type != 'image/gif' && type != 'image/jpg') {
-			empty_logo_input('File must be: JPG, PNG or GIF');
+			empty_logo_input('Only: JPG, PNG or GIF');
 			return;
 		}
 
@@ -68,11 +68,6 @@ $(document).ready(function () {
 	$('#card-option__post-job-example').on('change', function (e) {
 
 
-		// var type1 = e.target.files[0].type;
-		// var type2 = e.target.files[1].type;
-		// var type3 = e.target.files[2].type;
-
-
 		if (e.target.files.length == 0) {
 			$('.card-option__example-li').empty();
 			$('.card-option__example-li').append('<label for="card-option__post-job-example" class="card-option__post-job-example-label">Load Example</label>');
@@ -83,46 +78,64 @@ $(document).ready(function () {
 			$('#post-job-submit').attr('disabled', 'disabled');
 		}
 
-
-// ? if examples = 1 check SIZE < 2 MB
-
-
-
+		// ? == 1
 		if (e.target.files.length == 1) {
 
 			var size1 = e.target.files[0].size;
+			var type1 = e.target.files[0].type;
 
-			if(size1 >= 2097152){
+			if (type1 != 'image/jpeg' && type1 != 'image/png' && type1 != 'image/gif' && type1 != 'image/jpg') {
+				empty_examples_input('Only: JPG, PNG or GIF');
+			}
+			if (size1 >= 2097152) {
 				empty_examples_input('EACH File max size = 2 MB');
-			}			
-			if (size1 < 2097152){
+			}
+			// ! OK draw 1
+			if (size1 < 2097152 && type1 == 'image/jpeg' || type1 == 'image/png' || type1 == 'image/gif' || type1 == 'image/jpg') {
 				$('label[for="card-option__post-job-example"]').empty().html('<div>1/3 pic</div>').css({ 'background': '#6fda44', 'width': '49px' });
 				$('#post-job-submit').removeAttr('disabled');
 			}
 		}
+		// ? == 2
 		if (e.target.files.length == 2) {
 
 			var size1 = e.target.files[0].size;
 			var size2 = e.target.files[1].size;
 
-			if(size1 >= 2097152 || size2 >= 2097152){
+			var type1 = e.target.files[0].type;
+			var type2 = e.target.files[1].type;
+
+			if (size1 >= 2097152 || size2 >= 2097152) {
 				empty_examples_input('EACH File max size = 2 MB');
-			}			
-			if (size1 < 2097152 && size2 < 2097152){
+			}
+			if (type1 != 'image/jpeg' && type1 != 'image/png' && type1 != 'image/gif' && type1 != 'image/jpg' || type2 != 'image/jpeg' && type2 != 'image/png' && type2 != 'image/gif' && type2 != 'image/jpg') {
+				empty_examples_input('Only: JPG, PNG or GIF');
+			}
+			// ! OK draw 2
+			if (size1 < 2097152 && size2 < 2097152 && (type1 == 'image/jpeg' || type1 == 'image/png' || type1 == 'image/gif' || type1 == 'image/jpg') && (type2 == 'image/jpeg' || type2 == 'image/png' || type2 == 'image/gif' || type2 == 'image/jpg')) {
 				$('label[for="card-option__post-job-example"]').empty().html('<div>2/3 pic</div>').css({ 'background': '#6fda44', 'width': '49px' });
 				$('#post-job-submit').removeAttr('disabled');
 			}
 		}
+		// ? == 3
 		if (e.target.files.length == 3) {
 
 			var size1 = e.target.files[0].size;
 			var size2 = e.target.files[1].size;
 			var size3 = e.target.files[2].size;
 
-			if(size1 >= 2097152 || size2 >= 2097152 || size3 >= 2097152){
+			var type1 = e.target.files[0].type;
+			var type2 = e.target.files[1].type;
+			var type3 = e.target.files[2].type;
+
+			if (size1 >= 2097152 || size2 >= 2097152 || size3 >= 2097152) {
 				empty_examples_input('EACH File max size = 2 MB');
-			}			
-			if (size1 < 2097152 && size2 < 2097152 && size3 < 2097152){
+			}
+			if (type1 != 'image/jpeg' && type1 != 'image/png' && type1 != 'image/gif' && type1 != 'image/jpg' || type2 != 'image/jpeg' && type2 != 'image/png' && type2 != 'image/gif' && type2 != 'image/jpg' || type3 != 'image/jpeg' && type3 != 'image/png' && type3 != 'image/gif' && type3 != 'image/jpg') {
+				empty_examples_input('Only: JPG, PNG or GIF');
+			}
+			// ! OK draw 3
+			if (size1 < 2097152 && size2 < 2097152 && size3 < 2097152 && (type1 == 'image/jpeg' || type1 == 'image/png' || type1 == 'image/gif' || type1 == 'image/jpg') && (type2 == 'image/jpeg' || type2 == 'image/png' || type2 == 'image/gif' || type2 == 'image/jpg') && (type3 == 'image/jpeg' || type3 == 'image/png' || type3 == 'image/gif' || type3 == 'image/jpg')) {
 				$('label[for="card-option__post-job-example"]').empty().html('<div>3/3 pic</div>').css({ 'background': '#6fda44', 'width': '49px' });
 				$('#post-job-submit').removeAttr('disabled');
 			}
