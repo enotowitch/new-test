@@ -693,8 +693,11 @@ include 'search.php';
 							<option value="200 h/mo">200 h/mo</option>
 						</select>
 					</li>
-					<label for="card-option__post-job-example" class="card-option__post-job-example-label">Load
-						Example</label>
+					<li class="card-option__example-li">
+						<label for="card-option__post-job-example" class="card-option__post-job-example-label">Load
+							Example</label>
+					</li>
+
 
 					<input type="file" class="card-option__example card-option__post-job-example"
 						id="card-option__post-job-example" name="post_job_examples[]" multiple>
@@ -1005,14 +1008,18 @@ include 'footer.php';
 							if(field == "tags_not_3"){
 								$(`#post_job_tags_select_chosen`).css({'outline':'2px solid tomato', 'border-radius': '5px'});
 							} 
-							// ! IF NO LOGO
-							if(field == "no logo"){
+							// ! if NO LOGO or BIG FILE or BAD FILE
+							if(field == "no logo" || field == "big file logo" || field == "bad file logo"){
 								$('label[for="card__input-logo"]').css({'border':'2px solid tomato'});
 							} 
 							// ! IF EXAMPLES < 3
 							if(field == "examples_not_1"){
 								$('label[for="card-option__post-job-example"]').css({'box-shadow':'0 0 3pt 1.5pt tomato'});
-							} 
+							}
+							// todo
+							if(field == "big file ex_1" || field == "big file ex_2" || field == "big file ex_3" || field == "bad file ex_1" || field == "bad file ex_2" || field == "bad file ex_3"){
+								$('label[for="card-option__post-job-example"]').css({'box-shadow':'0 0 3pt 1.5pt tomato'});
+							}
 // ! timeout for errors
 							setTimeout(() => {
 								$(`textarea[name="${field}"]`).html('').css({'outline':'none'});

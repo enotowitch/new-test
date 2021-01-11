@@ -62,6 +62,45 @@ if(!$_FILES['path_example_1']['name']){
 }
 //
 //
+	$maxsize = 2097152;
+	$accept = array(
+		'image/jpeg',
+		'image/jpg',
+		'image/gif',
+		'image/png'
+  );
+
+if(($_FILES['file']['size'] >= $maxsize) && $_FILES['file']['size'] != NULL){
+	$error_fields[] = 'big file logo';
+}
+
+if(!in_array($_FILES['file']['type'], $accept) && (!empty($_FILES['file']['type']))) {
+	$error_fields[] = 'bad file logo';
+}
+// 
+
+if(($_FILES['path_example_1']['size'] >= $maxsize) && $_FILES['path_example_1']['size'] != NULL){
+	$error_fields[] = 'big file ex_1';
+}
+if(($_FILES['path_example_2']['size'] >= $maxsize) && $_FILES['path_example_2']['size'] != NULL){
+	$error_fields[] = 'big file ex_2';
+}
+if(($_FILES['path_example_3']['size'] >= $maxsize) && $_FILES['path_example_3']['size'] != NULL){
+	$error_fields[] = 'big file ex_3';
+}
+// 
+// todo
+if(!in_array($_FILES['path_example_1']['type'], $accept) && (!empty($_FILES['path_example_1']['type']))) {
+	$error_fields[] = 'bad file ex_1';
+}
+if(!in_array($_FILES['path_example_2']['type'], $accept) && (!empty($_FILES['path_example_2']['type']))) {
+	$error_fields[] = 'bad file ex_2';
+}
+if(!in_array($_FILES['path_example_3']['type'], $accept) && (!empty($_FILES['path_example_3']['type']))) {
+	$error_fields[] = 'bad file ex_3';
+}
+// 
+// 
 // ? if errors
 if(!empty($error_fields)){
 	$response = [
